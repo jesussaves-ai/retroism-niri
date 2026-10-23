@@ -98,6 +98,20 @@ end
 run cp $REPO/config/kde/kdeglobals $CFG/kdeglobals
 say "Platinum colour scheme + Fusion + Charcoal + RetroismIcons"
 
+# Kvantum theme (optional; needs kvantum + qt6ct installed)
+if test -d $HOME/.config/Kvantum
+    run mkdir -p $CFG/Kvantum/Platinum
+    run cp $REPO/config/Kvantum/kvantum.kvconfig $CFG/Kvantum/
+    run cp $REPO/config/Kvantum/Platinum/Platinum.kvconfig $CFG/Kvantum/Platinum/
+    run cp $REPO/config/Kvantum/Platinum/Platinum.svg $CFG/Kvantum/Platinum/
+    run mkdir -p $CFG/qt6ct/colors
+    run cp $REPO/config/qt6ct/qt6ct.conf $CFG/qt6ct/qt6ct.conf
+    run cp $REPO/config/qt6ct/colors/Platinum.conf $CFG/qt6ct/colors/Platinum.conf
+    say "Kvantum 'Platinum' theme + qt6ct config"
+else
+    say "Kvantum not installed - skipped (pacman -S kvantum qt6ct)"
+end
+
 echo "== LibreWolf chrome =="
 set -l lwroot $HOME/.config/librewolf/librewolf
 if test -d $lwroot
