@@ -2,12 +2,15 @@ import Quickshell
 import Quickshell.Io
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls.Basic
 
 import ".."
 
-// Terminal-style system monitor, styled like the Retroism screenshots.
-// Backed by utils/sysmon.sh (one persistent process, ~1 line/sec).
+/* Terminal-style system monitor, styled like the Retroism screenshots.
+ *
+ * Fork-free: reads /proc directly through Quickshell FileView (reload() +
+ * text()) on a 1 s timer. The previous implementation ran sysmon.sh, which
+ * forked `sh -c sleep 1` twice every second forever.
+ */
 PopupWindow {
     id: root
 
@@ -26,38 +29,96 @@ PopupWindow {
     property string loadAvg: "0.00"
     property string uptime: "00:00:00"
 
-    Process {
-        id: sysProc
-        command: ["sh", "/home/tom/.config/quickshell/retroism/utils/sysmon.sh"]
-        running: true
-        stdout: SplitParser {
-            onRead: line => {
-                const parts = line.trim().split(/\s+/);
-                const kv = {};
-                for (const p of parts) {
-                    const i = p.indexOf("=");
-                    if (i > 0) kv[p.slice(0, i)] = p.slice(i + 1);
-                }
-                if (kv.cores) root.coreUsage = kv.cores.split(",").map(x => parseInt(x));
-                if (kv.mem) root.memPct = parseInt(kv.mem);
-                if (kv.swap) root.swapPct = parseInt(kv.swap);
-                if (kv.load) root.loadAvg = kv.load;
-                if (kv.uptime) root.uptime = kv.uptime;
+    FileView { id: statFile; path: "/proc/stat"; blockLoading: true; printErrors: false }
+    FileView { id: memFile; path: "/proc/meminfo"; blockLoading: true; printErrors: false }
+    FileView { id: loadFile; path: "/proc/loadavg"; blockLoading: true; printErrors: false }
+    FileView { id: upFile; path: "/proc/uptime"; blockLoading: true; printErrors: false }
+
+    property var prevTotal: []
+    property var prevIdle: []
+
+    function sample() {
+        statFile.reload();
+        memFile.reload();
+        loadFile.reload();
+        upFile.reload();
+
+        // ── CPU per core ────────────────────────────────────────────────
+        const st = statFile.text() || "";
+        const totals = [];
+        const idles = [];
+        for (const line of st.split("\n")) {
+            const m = /^cpu([0-9]+)\s+(.+)$/.exec(line);
+            if (!m)
+                continue;
+            const idx = parseInt(m[1]);
+            const f = m[2].trim().split(/\s+/).map(Number);
+            totals[idx] = 0;
+            for (let i = 0; i < 8; i++)
+                totals[idx] += (f[i] || 0);
+            idles[idx] = (f[3] || 0) + (f[4] || 0);
+        }
+
+        const usage = [];
+        for (let i = 0; i < totals.length; i++) {
+            if (prevTotal[i] === undefined) {
+                usage[i] = 0;
+            } else {
+                const dt = totals[i] - prevTotal[i];
+                const di = idles[i] - prevIdle[i];
+                usage[i] = dt > 0 ? Math.max(0, Math.min(100, Math.round(100 * (dt - di) / dt))) : 0;
             }
         }
+        prevTotal = totals;
+        prevIdle = idles;
+        coreUsage = usage;
+
+        // ── Memory / swap ───────────────────────────────────────────────
+        const mi = memFile.text() || "";
+        let mt = 0, ma = 0, stt = 0, sf = 0;
+        for (const line of mi.split("\n")) {
+            const f = line.split(/\s+/);
+            if (line.startsWith("MemTotal:")) mt = parseInt(f[1]) || 0;
+            else if (line.startsWith("MemAvailable:")) ma = parseInt(f[1]) || 0;
+            else if (line.startsWith("SwapTotal:")) stt = parseInt(f[1]) || 0;
+            else if (line.startsWith("SwapFree:")) sf = parseInt(f[1]) || 0;
+        }
+        memPct = mt > 0 ? Math.round(100 * (mt - ma) / mt) : 0;
+        swapPct = stt > 0 ? Math.round(100 * (stt - sf) / stt) : 0;
+
+        // ── Load / uptime ───────────────────────────────────────────────
+        const la = (loadFile.text() || "").trim().split(/\s+/);
+        loadAvg = la[0] || "0.00";
+
+        const up = Math.floor(parseFloat(upFile.text() || "0"));
+        const h = Math.floor(up / 3600);
+        const m = Math.floor((up % 3600) / 60);
+        const s = up % 60;
+        uptime = (h < 10 ? "0" : "") + h + ":" + (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
+    }
+
+    Timer {
+        interval: 1000
+        repeat: true
+        running: true
+        onTriggered: root.sample()
     }
 
     function pad(n, w) {
         n = "" + n;
-        while (n.length < w) n = " " + n;
+        while (n.length < w)
+            n = " " + n;
         return n;
     }
+
     function bar(pct, len) {
         const n = Math.max(0, Math.min(len, Math.round(pct / 100 * len)));
         let s = "";
-        for (let i = 0; i < len; i++) s += (i < n ? "█" : "·");
+        for (let i = 0; i < len; i++)
+            s += (i < n ? "█" : "·");
         return s;
     }
+
     property string display: {
         const cu = root.coreUsage;
         const half = Math.ceil(cu.length / 2);
