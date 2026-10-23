@@ -10,3 +10,4 @@ FunctionBar 1.0 FunctionBar.qml
 MediaWidget 1.0 MediaWidget.qml
 TaskButtons 1.0 TaskButtons.qml
 LockScreen 1.0 LockScreen.qml
+Osd 1.0 Osd.qml

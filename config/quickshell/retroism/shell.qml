@@ -30,6 +30,7 @@ Scope {
     Taskbar.Bar {}
     Taskbar.NotificationDaemon {}
     Taskbar.LockScreen {}
+    Taskbar.Osd {}
     // Taskbar.FunctionBar {}   // removed: felt cluttered. File kept if wanted.
 
     FloatingWindow {
