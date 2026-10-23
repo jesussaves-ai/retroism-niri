@@ -1,0 +1,24 @@
+/* Retroism "Platinum" — page-side overrides (about: pages, scrollbars) */
+
+@-moz-document url("about:blank"), url("about:newtab"), url("about:home") {
+  html, body {
+    background-color: #008080 !important;   /* classic Win95 teal desktop */
+    color: #000000 !important;
+  }
+  .outer-wrapper, .main-content, main {
+    background-color: transparent !important;
+  }
+  .search-wrapper .search-handoff-button,
+  .search-wrapper input {
+    background-color: #a8a8a8 !important;
+    color: #000000 !important;
+    border: 1px solid #000000 !important;
+    border-radius: 0 !important;
+    box-shadow: inset 1px 1px #666666, inset -1px -1px #ffffff !important;
+  }
+}
+
+/* Chunky square scrollbars on regular pages */
+* {
+  scrollbar-width: auto;
+}

@@ -19,6 +19,7 @@ A 1990s **Platinum / Windows 95** inspired desktop for **Arch/CachyOS**, built o
 | Login | **SDDM** Platinum theme (`sddm-platinum/`) |
 | Terminal | **ghostty** — black DOS client area, Win95 16-colour palette, no titlebar |
 | Files | **Nemo** (GTK3) — menu bar, toolbar, status bar, list view |
+| Browser | **LibreWolf** — `userChrome.css` Platinum chrome (square beveled tabs, sunken URL bar) |
 | GTK | `ClassicPlatinumStreamlined` + `RetroismIcons`, `Charcoal` UI / `Monaco` mono |
 | Wallpaper | Metropolis via `awww` |
 

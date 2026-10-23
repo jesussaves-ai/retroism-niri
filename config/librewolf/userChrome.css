@@ -1,0 +1,237 @@
+/* Retroism "Platinum" — LibreWolf chrome
+ * Palette matches ~/.config/quickshell/retroism/Config.qml:
+ *   base #b4b4b4  shadow #666666  highlight #ffffff  well #909090  accent #1f6f6a
+ * Requires: toolkit.legacyUserProfileCustomizations.stylesheets = true
+ */
+
+:root {
+  --toolbar-bgcolor: #b4b4b4 !important;
+  --toolbar-color: #000000 !important;
+  --toolbar-non-lwt-bgcolor: #b4b4b4 !important;
+  --toolbar-non-lwt-textcolor: #000000 !important;
+  --toolbar-field-background-color: #a8a8a8 !important;
+  --toolbar-field-color: #000000 !important;
+  --toolbar-field-border-color: #000000 !important;
+  --toolbar-field-focus-background-color: #d8d8d8 !important;
+  --toolbar-field-focus-color: #000000 !important;
+
+  --lwt-accent-color: #a8a8a8 !important;
+  --lwt-text-color: #000000 !important;
+  --lwt-tab-text: #000000 !important;
+  --tab-selected-bgcolor: #d8d8d8 !important;
+  --tab-selected-textcolor: #000000 !important;
+  --tab-selected-outline-color: #000000 !important;
+
+  --arrowpanel-background: #b4b4b4 !important;
+  --arrowpanel-color: #000000 !important;
+  --arrowpanel-border-color: #000000 !important;
+  --arrowpanel-dimmed: rgba(0, 0, 0, 0.12) !important;
+  --arrowpanel-dimmed-further: rgba(0, 0, 0, 0.2) !important;
+
+  --toolbarbutton-hover-background: #cfcfcf !important;
+  --toolbarbutton-active-background: #909090 !important;
+  --toolbarbutton-icon-fill: #000000 !important;
+  --focus-outline-color: #1f6f6a !important;
+  --button-bgcolor: #c0c0c0 !important;
+  --button-color: #000000 !important;
+  --button-hover-bgcolor: #d0d0d0 !important;
+  --button-active-bgcolor: #909090 !important;
+  --urlbar-box-bgcolor: #a8a8a8 !important;
+  --urlbar-box-text-color: #000000 !important;
+
+  --panel-separator-color: #666666 !important;
+  --chrome-content-separator-color: #000000 !important;
+}
+
+/* Hard: no rounded corners anywhere in the chrome */
+* {
+  border-radius: 0 !important;
+}
+
+/* ── Toolbox / toolbars ─────────────────────────────────────────────── */
+#navigator-toolbox {
+  background-color: #b4b4b4 !important;
+  color: #000000 !important;
+  border-bottom: 2px solid #000000 !important;
+}
+
+#nav-bar {
+  background-color: #b4b4b4 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border-top: 1px solid #ffffff !important;
+  border-bottom: 1px solid #666666 !important;
+}
+
+#PersonalToolbar {
+  background-color: #b4b4b4 !important;
+  border-top: 1px solid #ffffff !important;
+}
+
+#TabsToolbar {
+  background-color: #a8a8a8 !important;
+  box-shadow: none !important;
+}
+
+/* ── Tabs: raised bevel, sunken when selected ───────────────────────── */
+.tabbrowser-tab {
+  padding: 0 !important;
+  color: #000000 !important;
+}
+
+.tab-background {
+  background-color: #c0c0c0 !important;
+  background-image: none !important;
+  border: 1px solid #000000 !important;
+  margin: 2px 1px !important;
+  box-shadow: inset 1px 1px #ffffff, inset -1px -1px #666666 !important;
+  outline: none !important;
+}
+
+.tabbrowser-tab[selected="true"] .tab-background {
+  background-color: #d8d8d8 !important;
+  box-shadow: inset -1px -1px #ffffff, inset 1px 1px #666666 !important;
+}
+
+.tabbrowser-tab:hover .tab-background {
+  background-color: #cfcfcf !important;
+}
+
+.tab-label {
+  color: #000000 !important;
+}
+
+.tab-close-button {
+  color: #000000 !important;
+  opacity: 0.8 !important;
+}
+
+/* ── URL bar: sunken well ───────────────────────────────────────────── */
+#urlbar-background,
+#searchbar {
+  background-color: #a8a8a8 !important;
+  background-image: none !important;
+  border: 1px solid #000000 !important;
+  box-shadow: inset 1px 1px #666666, inset -1px -1px #ffffff !important;
+  outline: none !important;
+}
+
+#urlbar[focused="true"] #urlbar-background {
+  background-color: #d8d8d8 !important;
+}
+
+#urlbar-input,
+.searchbar-textbox {
+  color: #000000 !important;
+}
+
+#urlbar-input::placeholder {
+  color: #444444 !important;
+  opacity: 1 !important;
+}
+
+/* ── Toolbar buttons ────────────────────────────────────────────────── */
+toolbarbutton,
+.toolbarbutton-1 {
+  color: #000000 !important;
+}
+
+toolbarbutton:hover:not([disabled]),
+.toolbarbutton-1:hover:not([disabled]) {
+  background-color: #cfcfcf !important;
+  border: 1px solid #000000 !important;
+}
+
+toolbarbutton:active:not([disabled]),
+.toolbarbutton-1:active:not([disabled]) {
+  background-color: #909090 !important;
+}
+
+/* ── Menus / panels / popups ────────────────────────────────────────── */
+menupopup,
+panel,
+.panel-arrowcontent {
+  background-color: #b4b4b4 !important;
+  color: #000000 !important;
+  border: 1px solid #000000 !important;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.45) !important;
+}
+
+menuitem,
+menu {
+  color: #000000 !important;
+}
+
+menuitem:hover,
+menu:hover,
+menuitem[_moz-menuactive="true"] {
+  background-color: #1f6f6a !important;
+  color: #ffffff !important;
+}
+
+menuseparator {
+  border-top: 1px solid #666666 !important;
+}
+
+/* ── Sidebar / findbar / notifications ──────────────────────────────── */
+#sidebar-box,
+#sidebar-header {
+  background-color: #b4b4b4 !important;
+  color: #000000 !important;
+}
+
+findbar {
+  background-color: #b4b4b4 !important;
+  color: #000000 !important;
+  border-top: 1px solid #000000 !important;
+}
+
+/* ── Scrollbars ─────────────────────────────────────────────────────── */
+scrollbar {
+  background-color: #a8a8a8 !important;
+}
+
+scrollbar thumb {
+  background-color: #c0c0c0 !important;
+  border: 1px solid #000000 !important;
+}
+
+/* ── Refinements: stronger bevels + Charcoal UI font ─────────────────── */
+.tab-background {
+  background-color: #b8b8b8 !important;
+  box-shadow: inset 1px 1px #ffffff, inset -1px -1px #555555 !important;
+}
+
+.tabbrowser-tab[selected="true"] .tab-background {
+  background-color: #e2e2e2 !important;
+  box-shadow: inset 1px 1px #ffffff, inset -1px -1px #777777, 0 1px 0 #000000 !important;
+}
+
+#tabs-newtab-button,
+#new-tab-button {
+  margin: 2px 3px !important;
+  background-color: #c0c0c0 !important;
+  border: 1px solid #000000 !important;
+  box-shadow: inset 1px 1px #ffffff, inset -1px -1px #666666 !important;
+}
+
+#tabs-newtab-button:hover,
+#new-tab-button:hover {
+  background-color: #d0d0d0 !important;
+}
+
+/* Use the Platinum UI face in chrome text (not page content) */
+.tab-label,
+#urlbar-input,
+#urlbar .urlbar-input-box,
+menuitem,
+menu,
+.toolbarbutton-1,
+#PersonalToolbar .bookmark-item {
+  font-family: "Charcoal", "Adwaita Sans", sans-serif !important;
+  font-size: 13px !important;
+}
+
+#urlbar-input {
+  font-size: 14px !important;
+}

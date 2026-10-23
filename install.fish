@@ -87,6 +87,36 @@ for f in $REPO/assets/fonts/*.ttf
 end
 run fc-cache -f
 
+echo "== LibreWolf chrome =="
+set -l lwroot $HOME/.config/librewolf/librewolf
+if test -d $lwroot
+    # pick the profile that actually has state (prefs.js), not the empty stub
+    set -l prof ""
+    for d in $lwroot/*.default*
+        if test -f $d/prefs.js
+            set prof $d
+            break
+        end
+    end
+    if test -n "$prof"
+        say "profile: "(basename $prof)
+        run mkdir -p $prof/chrome
+        run cp $REPO/config/librewolf/userChrome.css $prof/chrome/
+        run cp $REPO/config/librewolf/userContent.css $prof/chrome/
+        if test "$DRY" = no
+            grep -q 'legacyUserProfileCustomizations' $prof/user.js 2>/dev/null
+            or printf 'user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);\n' >> $prof/user.js
+            say "user.js ensures stylesheets are enabled"
+        else
+            say "[dry] enable toolkit.legacyUserProfileCustomizations.stylesheets"
+        end
+    else
+        say "no LibreWolf profile with prefs.js found - skipped"
+    end
+else
+    say "LibreWolf not installed - skipped"
+end
+
 if test "$DO_NEMO" = yes
     echo "== Nemo preferences =="
     if test -f $REPO/desktop/nemo.dconf
