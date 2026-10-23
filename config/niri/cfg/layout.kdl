@@ -1,0 +1,41 @@
+layout {
+        gaps 8 // Gap between windows (tighter, classic Platinum feel)
+        center-focused-column "never" // Don’t auto-center focused column
+
+        background-color "transparent" // awww-daemon renders the wallpaper behind
+
+        preset-column-widths {
+            proportion 0.33333
+            proportion 0.5
+            proportion 0.66667
+        }
+
+        // ────────────── "Chicago" retro theme (matches Waybar) ──────────────
+        // Navy accent #000080 must stay in sync with ~/.config/waybar/style.css.
+
+        // Crisp black edge on every window (defines it against dark wallpaper)
+        border {
+            width 2
+            active-color "#000000"
+            inactive-color "#5a5a5a"
+            urgent-color "#ff5a2b"
+        }
+
+        // Accent ring on the focused window only -> depth without flatness.
+        focus-ring {
+            width 3
+            active-color "#1f6f6a"
+            inactive-color "#00000000"
+        }
+
+        // Hard-offset retro drop shadow (Win9x-style, barely blurred).
+        shadow {
+            on
+            softness 2
+            spread 0
+            offset x=3 y=3
+            color "#000000aa"
+        }
+
+        struts {}
+    }

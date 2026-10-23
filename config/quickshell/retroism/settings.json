@@ -1,0 +1,25 @@
+{
+  "settings": {
+    "bar": {
+      "fontSize": 12,
+      "monochromeTrayIcons": true,
+      "trayIconSize": 16
+    },
+    "currentTheme": "default",
+    "execCommands": {
+      "files": "nemo",
+      "terminal": "ghostty"
+    },
+    "militaryTimeClockFormat": true,
+    "setWallpaperToThemeWallpaper": false,
+    "systemDetails": {
+      "cpu": "Intel Core i5-13420H",
+      "gpu": "NVIDIA RTX 4050 Max-Q",
+      "osName": "CachyOS",
+      "osVersion": "7.2.11 (Niri)",
+      "ram": "16 GB"
+    },
+    "systemProfileImageSource": "/home/tom/Pictures/system_profile_picture.png",
+    "version": "0.2"
+  }
+}

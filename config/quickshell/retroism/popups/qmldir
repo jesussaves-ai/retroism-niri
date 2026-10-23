@@ -1,0 +1,7 @@
+module Popups
+StartMenu 1.0 StartMenu.qml
+ThemeMenu 1.0 ThemeMenu.qml
+AppLauncher 1.0 AppLauncher.qml
+PopupWindowFrame 1.0 PopupWindowFrame.qml
+SysMonitor 1.0 SysMonitor.qml
+SessionMenu 1.0 SessionMenu.qml

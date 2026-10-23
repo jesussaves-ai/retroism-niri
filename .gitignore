@@ -1,0 +1,6 @@
+# generated / machine-specific, not tracked
+sddm-platinum/background.png
+**/*.bak
+**/*.disabled
+**/*.log
+assets/wallpapers/

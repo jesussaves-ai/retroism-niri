@@ -1,0 +1,10 @@
+// ────────────── Startup Applications ──────────────
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#spawn-sh-at-startup
+// Status shell: Retroism (Quickshell) with Waybar fallback (2026-10-23).
+// To revert to Waybar: uncomment the waybar line and comment the launcher.
+spawn-at-startup "/home/tom/.local/bin/status-shell.sh"
+// spawn-at-startup "waybar"
+// spawn-at-startup "eww" "daemon"
+// spawn-at-startup "eww" "open" "topbar"
+spawn-at-startup "awww-daemon"
+spawn-at-startup "awww" "img" "/home/tom/Pictures/wallpapers/metropolis.png"

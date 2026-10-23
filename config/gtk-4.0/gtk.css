@@ -1,0 +1,259 @@
+/* ~/.config/gtk-4.0/gtk.css — Retroism "Platinum" for GTK4 / libadwaita
+ * Applies to Nautilus, GNOME apps and anything else using libadwaita.
+ * Base: adw-gtk3 (light), then hard Platinum overrides.
+ * Revert: restore the symlink recorded in bak/gtk.css.target
+ */
+
+@import url("file:///usr/share/themes/adw-gtk3/gtk-4.0/gtk.css");
+
+/* ── Palette (keep in sync with Config.qml) ───────────────────────────── */
+@define-color accent_color #1f6f6a;
+@define-color accent_bg_color #1f6f6a;
+@define-color accent_fg_color #ffffff;
+
+@define-color window_bg_color #b4b4b4;
+@define-color window_fg_color #000000;
+@define-color view_bg_color #d8d8d8;
+@define-color view_fg_color #000000;
+
+@define-color headerbar_bg_color #b4b4b4;
+@define-color headerbar_fg_color #000000;
+@define-color headerbar_border_color #000000;
+@define-color headerbar_backdrop_color #b4b4b4;
+@define-color headerbar_shade_color rgba(0, 0, 0, 0.18);
+
+@define-color card_bg_color #c0c0c0;
+@define-color card_fg_color #000000;
+@define-color card_shade_color rgba(0, 0, 0, 0.18);
+
+@define-color dialog_bg_color #b4b4b4;
+@define-color dialog_fg_color #000000;
+@define-color popover_bg_color #b4b4b4;
+@define-color popover_fg_color #000000;
+
+@define-color sidebar_bg_color #a8a8a8;
+@define-color sidebar_fg_color #000000;
+@define-color sidebar_backdrop_color #a8a8a8;
+
+@define-color destructive_bg_color #a02020;
+@define-color destructive_fg_color #ffffff;
+@define-color shade_color rgba(0, 0, 0, 0.18);
+@define-color scrollbar_outline_color #000000;
+
+/* ── Retro: no rounding anywhere ──────────────────────────────────────── */
+* {
+  border-radius: 0;
+}
+
+/* ── Window ───────────────────────────────────────────────────────────── */
+window.background,
+.background {
+  background-color: @window_bg_color;
+  color: @window_fg_color;
+}
+
+/* ── Titlebar: gray with a black rule and a white top highlight ───────── */
+headerbar,
+.titlebar {
+  background-image: none;
+  background-color: @headerbar_bg_color;
+  color: @headerbar_fg_color;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: #000000;
+  box-shadow: inset 0 1px #ffffff;
+  min-height: 34px;
+}
+
+headerbar:backdrop,
+.titlebar:backdrop {
+  background-color: @headerbar_backdrop_color;
+  color: #333333;
+  box-shadow: none;
+}
+
+/* ── Buttons: raised bevel ────────────────────────────────────────────── */
+button {
+  background-image: none;
+  background-color: #c0c0c0;
+  color: #000000;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #000000;
+  box-shadow: inset 1px 1px #ffffff, inset -1px -1px #666666;
+  padding: 4px 10px;
+  min-height: 22px;
+}
+
+button:hover {
+  background-color: #cfcfcf;
+}
+
+button:active,
+button:checked {
+  background-color: #a8a8a8;
+  box-shadow: inset -1px -1px #ffffff, inset 1px 1px #666666;
+}
+
+button:disabled {
+  color: #777777;
+}
+
+button.suggested-action,
+button.default {
+  background-color: #1f6f6a;
+  color: #ffffff;
+}
+
+button.destructive-action {
+  background-color: #a02020;
+  color: #ffffff;
+}
+
+/* Flat buttons (headerbar icons) keep the hover without the bevel */
+headerbar button.flat,
+button.flat {
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+headerbar button.flat:hover,
+button.flat:hover {
+  background-color: #cfcfcf;
+  border-color: #000000;
+  box-shadow: inset 1px 1px #ffffff, inset -1px -1px #666666;
+}
+
+/* ── Entries: sunken well ─────────────────────────────────────────────── */
+entry,
+spinbutton,
+searchentry {
+  background-image: none;
+  background-color: #a8a8a8;
+  color: #000000;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #000000;
+  box-shadow: inset 1px 1px #666666, inset -1px -1px #ffffff;
+  min-height: 24px;
+}
+
+entry:focus-within,
+entry:focus {
+  background-color: #d8d8d8;
+}
+
+/* ── Views / lists ────────────────────────────────────────────────────── */
+.view,
+listview,
+iconview,
+textview text {
+  background-color: @view_bg_color;
+  color: @view_fg_color;
+}
+
+row {
+  background-color: transparent;
+}
+
+row:hover {
+  background-color: #c8c8c8;
+}
+
+row:selected,
+gridview > child:selected,
+.view:selected {
+  background-color: @accent_bg_color;
+  color: #ffffff;
+}
+
+/* ── Sidebar (Nautilus places) ────────────────────────────────────────── */
+.sidebar,
+placessidebar,
+navigation-sidebar {
+  background-color: @sidebar_bg_color;
+  color: @sidebar_fg_color;
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-right-color: #000000;
+}
+
+.sidebar row:selected,
+navigation-sidebar row:selected {
+  background-color: @accent_bg_color;
+  color: #ffffff;
+}
+
+/* ── Popovers / menus: hard drop shadow ───────────────────────────────── */
+popover > contents,
+popover.background > contents,
+menu {
+  background-color: @popover_bg_color;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #000000;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.45);
+}
+
+/* ── Cards / grouped lists ────────────────────────────────────────────── */
+.card,
+.frame {
+  background-color: #c0c0c0;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #000000;
+}
+
+/* ── Scrollbars: chunky 90s trough ────────────────────────────────────── */
+scrollbar {
+  background-color: #a8a8a8;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #000000;
+}
+
+scrollbar slider {
+  background-color: #c0c0c0;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #000000;
+  min-width: 12px;
+  min-height: 12px;
+}
+
+scrollbar slider:hover {
+  background-color: #d0d0d0;
+}
+
+/* ── Tooltips / dialogs ───────────────────────────────────────────────── */
+tooltip {
+  background-color: #ffffe0;
+  color: #000000;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #000000;
+}
+
+dialog,
+.dialog {
+  background-color: @dialog_bg_color;
+}
+
+/* ── Progress / selection colours ─────────────────────────────────────── */
+progressbar > trough > progress {
+  background-color: #1f6f6a;
+}
+
+selection {
+  background-color: #1f6f6a;
+  color: #ffffff;
+}
+
+link {
+  color: #1f4e79;
+}
+
+separator {
+  background-color: #666666;
+}

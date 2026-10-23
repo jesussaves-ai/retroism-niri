@@ -1,0 +1,49 @@
+# ~/.config/ghostty/config — Windows 95 / DOS Prompt theme (2026-10-23)
+#
+# Matches the reference: black client area, silver DOS text, Win95 16-colour
+# palette. No title bar (window-decoration = false; niri draws a 2px frame).
+#
+# Previous themes are preserved:
+#   ~/.config/ghostty/config.ghostty.disabled   (VAPOR-VOID neon)
+#   git history / this file's earlier Platinum variant
+
+font-family = Monaco
+font-size = 13
+adjust-cell-height = 8%
+font-thicken = true
+
+# Client area — classic MS-DOS Prompt
+background = #000000
+foreground = #c0c0c0
+cursor-color = #c0c0c0
+cursor-text = #000000
+cursor-style = block
+selection-background = #000080
+selection-foreground = #ffffff
+
+# No wallpaper image — flat black client area like the Win95 terminal
+# (previously the Platinum pinstripe surface)
+
+# Windows 95 16-colour ANSI palette
+palette = 0=#000000
+palette = 1=#800000
+palette = 2=#008000
+palette = 3=#808000
+palette = 4=#000080
+palette = 5=#800080
+palette = 6=#008080
+palette = 7=#c0c0c0
+palette = 8=#808080
+palette = 9=#ff0000
+palette = 10=#00ff00
+palette = 11=#ffff00
+palette = 12=#0000ff
+palette = 13=#ff00ff
+palette = 14=#00ffff
+palette = 15=#ffffff
+
+window-padding-x = 10
+window-padding-y = 8
+window-padding-color = background
+window-decoration = false
+minimum-contrast = 1.05
