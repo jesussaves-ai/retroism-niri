@@ -87,6 +87,17 @@ for f in $REPO/assets/fonts/*.ttf
 end
 run fc-cache -f
 
+echo "== Qt / KDE (Dolphin & co) =="
+run mkdir -p $HOME/.local/share/color-schemes
+run cp $REPO/desktop/Platinum.colors $HOME/.local/share/color-schemes/
+if test -e $CFG/kdeglobals
+    say "backup kdeglobals -> $BACKUP/kdeglobals"
+    run mkdir -p $BACKUP
+    run cp $CFG/kdeglobals $BACKUP/kdeglobals
+end
+run cp $REPO/config/kde/kdeglobals $CFG/kdeglobals
+say "Platinum colour scheme + Fusion + Charcoal + RetroismIcons"
+
 echo "== LibreWolf chrome =="
 set -l lwroot $HOME/.config/librewolf/librewolf
 if test -d $lwroot

@@ -1,0 +1,24 @@
+[General]
+ColorScheme=Platinum
+Name=Platinum
+font=Charcoal,11,-1,5,50,0,0,0,0,0
+fixed=Monaco,10,-1,5,50,0,0,0,0,0
+menuFont=Charcoal,11,-1,5,50,0,0,0,0,0
+toolBarFont=Charcoal,11,-1,5,50,0,0,0,0,0
+smallestReadableFont=Charcoal,8,-1,5,50,0,0,0,0,0
+
+[KDE]
+widgetStyle=Fusion
+SingleClick=false
+ShowDeleteCommand=true
+AnimationDurationFactor=0
+
+[Icons]
+Theme=RetroismIcons
+
+[Toolbar style]
+ToolButtonStyle=TextBesideIcon
+IconSize=22
+
+[DirSelect Dialog]
+DirSelectDialog Size=800,560
