@@ -47,6 +47,11 @@ The SDDM background is not tracked (12 MB); drop any PNG at
 | `Mod+E` | Nemo |
 | `Mod+ALT+L` | Lock screen |
 | `Mod+Shift+Q` | Session menu |
+| `Mod+S` | Screenshot: region (slurp) → file + clipboard |
+| `Mod+Shift+S` | Screenshot: full screen |
+| `Mod+Space` | System monitor |
+| `Mod+Grave` | niri overview |
+| `Mod+Shift+V` | Clipboard history (cliphist + fuzzel) |
 
 ## Dependencies
 
