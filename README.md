@@ -71,3 +71,12 @@ Optional: `ttf-jetbrains-mono`, `adw-gtk3`, `papirus-icon-theme`.
   because S3 `deep` hung on resume on this laptop.
 
 MIT.
+---
+
+## Support
+
+If you'd like to support the project, you can buy me a coffee on Ko-fi:
+
+**[https://ko-fi.com/jesussavesai](https://ko-fi.com/jesussavesai)**
+
+And honestly -- paid or free, it all means a lot to me. A donation, a star, a bug report, or just using what I make: thank you. ❤️
