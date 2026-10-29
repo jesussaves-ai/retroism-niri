@@ -71,6 +71,7 @@ Optional: `ttf-jetbrains-mono`, `adw-gtk3`, `papirus-icon-theme`.
   because S3 `deep` hung on resume on this laptop.
 
 MIT.
+
 ---
 
 ## Support
